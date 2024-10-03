@@ -1,0 +1,13 @@
+venv/
+
+# Ignore Git repository files
+.git
+.gitignore
+
+# Ignore logs
+*.log
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
