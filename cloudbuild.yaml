@@ -3,3 +3,6 @@ steps:
     args: ['build', '-t', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA']
+
+options:
+  logging: NONE  # Ensure logging behavior is set
