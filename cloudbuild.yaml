@@ -2,7 +2,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA']  
+    args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA']
+
 options:
-  logging: GCS_ONLY   # OR use CLOUD_LOGGING_ONLY for Cloud Logging
-  logsBucket: "gs://build-logs-bucket-us-central1"  # Ensure logging behavior is set
+  logging: build-logs-bucket-us-central1  # Ensure logging behavior is set
