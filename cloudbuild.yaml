@@ -5,4 +5,4 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA']
 
 options:
-  logging: NONE  # Ensure logging behavior is set
+  logging: REGIONAL_USER_OWNED_BUCKET  # Ensure logging behavior is set
