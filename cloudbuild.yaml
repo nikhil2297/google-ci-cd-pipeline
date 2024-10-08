@@ -3,7 +3,16 @@ steps:
     args: ['build', '-t', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA']
-  
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy flask-app-service \
+        --image us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA \
+        --platform managed \
+        --region us-central1 \
+        --allow-unauthenticated
 
 images:
   - 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA'
