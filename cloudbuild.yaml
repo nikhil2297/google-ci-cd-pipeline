@@ -5,4 +5,4 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-cb:$COMMIT_SHA']
 
 options:
-  logging: build-logs-bucket-us-central1  # Ensure logging behavior is set
+  logging: CLOUD_LOGGING_ONLY # Ensure logging behavior is set
