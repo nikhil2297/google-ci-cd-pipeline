@@ -27,12 +27,12 @@ steps:
     args:
       - '-c'
       - |
-        echo "docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA"
+        echo "docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:ce9c2674844a2741570e510c6845178caded7f56"
         gcloud auth configure-docker northamerica-northeast2-docker.pkg.dev
         gcloud compute ssh flask-app-instance \
           --zone=northamerica-northeast2-a \
           --command='
-            docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+            docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:ce9c2674844a2741570e510c6845178caded7f56
             
             sudo docker stop assignment2-flask-container2
             sudo docker rm assignment2-flask-container2
@@ -40,7 +40,7 @@ steps:
             sudo docker run -d \
               --name assignment2-flask-container2 \
               -p 8080:8080 \
-              northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+              northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:ce9c2674844a2741570e510c6845178caded7f56
           '
 
 images:
