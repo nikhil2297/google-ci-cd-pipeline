@@ -13,17 +13,28 @@ steps:
         --platform managed \
         --region us-central1 \
         --allow-unauthenticated
-  
+  - name: 'ubuntu'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "COMMIT_SHA: $COMMIT_SHA"
+        echo "SHORT_SHA: $SHORT_SHA"
+        echo "BRANCH_NAME: $BRANCH_NAME"
+        echo "REPO_NAME: $REPO_NAME"
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
+        TAG=${COMMIT_SHA:-$SHORT_SHA}
+        TAG=${TAG:-latest}
+        echo "Using image tag: $TAG"
         gcloud auth configure-docker northamerica-northeast2-docker.pkg.dev
         gcloud compute ssh flask-app-instance \
           --zone=northamerica-northeast2-a \
           --command='
-            docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+            docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$TAG
             
             sudo docker stop assignment2-flask-container2
             sudo docker rm assignment2-flask-container2
@@ -31,7 +42,7 @@ steps:
             sudo docker run -d \
               --name assignment2-flask-container2 \
               -p 8080:8080 \
-              northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+              northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$TAG
           '
 
 images:
