@@ -19,6 +19,7 @@ steps:
     args:
       - '-c'
       - |
+        gcloud auth configure-docker northamerica-northeast2-docker.pkg.dev
         gcloud compute ssh flask-app-instance \
           --zone=northamerica-northeast2-a \
           --command='
