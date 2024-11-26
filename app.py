@@ -7,7 +7,7 @@ def hello():
     return "Hello, This is nikhil Lohar! Task 2 - 100925168"
 
 @app.route('/health-check')
-def hello():
+def health_check():
     return "This is a health check"
 
 if __name__ == "__main__":
