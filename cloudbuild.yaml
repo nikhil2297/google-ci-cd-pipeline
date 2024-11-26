@@ -11,7 +11,7 @@ steps:
         gcloud run deploy assignment-lab2-workflow \
         --image northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA \
         --platform managed \
-        --region northamerica-northeast2 \
+        --region us-central1 \
         --allow-unauthenticated
 
 images:
