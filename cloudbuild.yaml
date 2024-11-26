@@ -17,21 +17,21 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
-  - '-c'
-  - |
-    gcloud compute ssh flask-app-instance \
-      --zone=northamerica-northeast2-a \
-      --command='
-        sudo docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
-        
-        sudo docker stop assignment2-flask-container2 || true
-        sudo docker rm assignment2-flask-container2 || true
-        
-        sudo docker run -d \
-          --name assignment2-flask-container2 \
-          -p 8080:5000 \
-          northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
-      '
+      - '-c'
+      - |
+        gcloud compute ssh flask-app-instance \
+          --zone=northamerica-northeast2-a \
+          --command='
+            sudo docker pull northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+            
+            sudo docker stop assignment2-flask-container2 || true
+            sudo docker rm assignment2-flask-container2 || true
+            
+            sudo docker run -d \
+              --name assignment2-flask-container2 \
+              -p 8080:5000 \
+              northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA
+          '
 
 images:
   - 'northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA'
