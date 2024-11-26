@@ -1,16 +1,18 @@
-FROM python:3.12-alpine
+# Use a lightweight Python image
+FROM python:3.9-slim
 
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY requirements.txt .
+# Copy the HTML and Python server files into the container
+COPY index.html /app/index.html
+COPY app.py /app/app.py
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Flask
+RUN pip install flask
 
-COPY . .
+# Expose port 8080 to the outside world
+EXPOSE 8080
 
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
-
-EXPOSE 5000
-
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+# Command to run the Python server
+CMD ["python", "app.py"]

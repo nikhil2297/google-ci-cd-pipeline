@@ -1,21 +1,21 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA']
+    args: ['push', 'northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        gcloud run deploy flask-app-service \
-        --image us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA \
+        gcloud run deploy assignment-lab2-workflow \
+        --image northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA \
         --platform managed \
-        --region us-central1 \
+        --region northamerica-northeast2 \
         --allow-unauthenticated
 
 images:
-  - 'us-central1-docker.pkg.dev/college-task-project/lohar-100925168-ar/app:$COMMIT_SHA'
+  - 'northamerica-northeast2-docker.pkg.dev/assignment-2-project-442810/assignment2-flask/assignment2-flask-image:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
